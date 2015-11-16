@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E4EE3571BF437B500CB6167 /* LookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4EE3561BF437B500CB6167 /* LookTableViewController.m */; };
+		4E4EE35A1BF496A600CB6167 /* DingDanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4EE3591BF496A600CB6167 /* DingDanTableViewCell.m */; };
 		4EEED5D51BF036E10012066B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED5D41BF036E10012066B /* main.m */; };
 		4EEED5D81BF036E10012066B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED5D71BF036E10012066B /* AppDelegate.m */; };
 		4EEED5DB1BF036E10012066B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED5DA1BF036E10012066B /* ViewController.m */; };
@@ -14,6 +16,11 @@
 		4EEED5E01BF036E10012066B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EEED5DF1BF036E10012066B /* Images.xcassets */; };
 		4EEED5E31BF036E10012066B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EEED5E11BF036E10012066B /* LaunchScreen.xib */; };
 		4EEED5EF1BF036E20012066B /* DingcanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED5EE1BF036E20012066B /* DingcanTests.m */; };
+		4EEED6061BF0708F0012066B /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED6051BF0708F0012066B /* HelpViewController.m */; };
+		4EEED60C1BF0717B0012066B /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED60B1BF0717B0012066B /* PersonViewController.m */; };
+		4EEED60F1BF09E470012066B /* RestaurantTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED60E1BF09E470012066B /* RestaurantTableViewController.m */; };
+		4EEED6121BF18CE30012066B /* ResViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED6111BF18CE30012066B /* ResViewController.m */; };
+		4EEED6151BF194F20012066B /* PackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED6141BF194F20012066B /* PackTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E4EE3551BF437B500CB6167 /* LookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookTableViewController.h; sourceTree = "<group>"; };
+		4E4EE3561BF437B500CB6167 /* LookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookTableViewController.m; sourceTree = "<group>"; };
+		4E4EE3581BF496A600CB6167 /* DingDanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DingDanTableViewCell.h; sourceTree = "<group>"; };
+		4E4EE3591BF496A600CB6167 /* DingDanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingDanTableViewCell.m; sourceTree = "<group>"; };
 		4EEED5CF1BF036E10012066B /* Dingcan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dingcan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EEED5D31BF036E10012066B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EEED5D41BF036E10012066B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +51,16 @@
 		4EEED5E81BF036E20012066B /* DingcanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DingcanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EEED5ED1BF036E20012066B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EEED5EE1BF036E20012066B /* DingcanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DingcanTests.m; sourceTree = "<group>"; };
+		4EEED6041BF0708F0012066B /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		4EEED6051BF0708F0012066B /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		4EEED60A1BF0717B0012066B /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonViewController.h; sourceTree = "<group>"; };
+		4EEED60B1BF0717B0012066B /* PersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonViewController.m; sourceTree = "<group>"; };
+		4EEED60D1BF09E470012066B /* RestaurantTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantTableViewController.h; sourceTree = "<group>"; };
+		4EEED60E1BF09E470012066B /* RestaurantTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantTableViewController.m; sourceTree = "<group>"; };
+		4EEED6101BF18CE30012066B /* ResViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResViewController.h; sourceTree = "<group>"; };
+		4EEED6111BF18CE30012066B /* ResViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResViewController.m; sourceTree = "<group>"; };
+		4EEED6131BF194F20012066B /* PackTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackTableViewController.h; sourceTree = "<group>"; };
+		4EEED6141BF194F20012066B /* PackTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +110,20 @@
 				4EEED5DF1BF036E10012066B /* Images.xcassets */,
 				4EEED5E11BF036E10012066B /* LaunchScreen.xib */,
 				4EEED5D21BF036E10012066B /* Supporting Files */,
+				4EEED6041BF0708F0012066B /* HelpViewController.h */,
+				4EEED6051BF0708F0012066B /* HelpViewController.m */,
+				4EEED60A1BF0717B0012066B /* PersonViewController.h */,
+				4EEED60B1BF0717B0012066B /* PersonViewController.m */,
+				4EEED60D1BF09E470012066B /* RestaurantTableViewController.h */,
+				4EEED60E1BF09E470012066B /* RestaurantTableViewController.m */,
+				4EEED6131BF194F20012066B /* PackTableViewController.h */,
+				4EEED6141BF194F20012066B /* PackTableViewController.m */,
+				4EEED6101BF18CE30012066B /* ResViewController.h */,
+				4EEED6111BF18CE30012066B /* ResViewController.m */,
+				4E4EE3551BF437B500CB6167 /* LookTableViewController.h */,
+				4E4EE3561BF437B500CB6167 /* LookTableViewController.m */,
+				4E4EE3581BF496A600CB6167 /* DingDanTableViewCell.h */,
+				4E4EE3591BF496A600CB6167 /* DingDanTableViewCell.m */,
 			);
 			path = Dingcan;
 			sourceTree = "<group>";
@@ -220,8 +255,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EEED5DB1BF036E10012066B /* ViewController.m in Sources */,
+				4EEED6061BF0708F0012066B /* HelpViewController.m in Sources */,
+				4EEED6151BF194F20012066B /* PackTableViewController.m in Sources */,
+				4E4EE3571BF437B500CB6167 /* LookTableViewController.m in Sources */,
 				4EEED5D81BF036E10012066B /* AppDelegate.m in Sources */,
+				4E4EE35A1BF496A600CB6167 /* DingDanTableViewCell.m in Sources */,
 				4EEED5D51BF036E10012066B /* main.m in Sources */,
+				4EEED60F1BF09E470012066B /* RestaurantTableViewController.m in Sources */,
+				4EEED60C1BF0717B0012066B /* PersonViewController.m in Sources */,
+				4EEED6121BF18CE30012066B /* ResViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +458,7 @@
 				4EEED5F41BF036E20012066B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4EEED5F51BF036E20012066B /* Build configuration list for PBXNativeTarget "DingcanTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +467,7 @@
 				4EEED5F71BF036E20012066B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

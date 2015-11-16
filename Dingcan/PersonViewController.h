@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PersonViewController.h
 //  Dingcan
 //
 //  Created by 李旗 on 15/11/9.
@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
-
-@property(nonatomic,retain)UITableView *myTableview;
+@interface PersonViewController : UIViewController
 
 @end
-
