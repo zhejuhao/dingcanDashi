@@ -25,31 +25,45 @@
    
     
     
+    number_not_order = 6;
+    
+    
+    
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory ,NSUserDomainMask, YES);
     NSString  *docDir = [paths objectAtIndex:0];
     
-    NSString *readPath = [docDir stringByAppendingPathComponent:@"oder_List.plist"];
+    NSString *readPath = [docDir stringByAppendingPathComponent:@"oderinfo2.plist"];
     NSMutableArray *array_orderList = [[NSMutableArray alloc]initWithContentsOfFile:readPath];
    
     self.already_Oder = array_orderList;
     
     
-//     dic_person_name  = [[NSDictionary alloc]initWithObjectsAndKeys:@"赵大",@"person_name",@"钱二",@"person_name",@"张三",@"person_name",@"李四",@"person_name",@"王五",@"person_name",@"赵六",@"person_name", nil];
-//    
+ 
    arr_person_name = [[NSMutableArray alloc]initWithObjects:@"赵大",@"钱二",@"张三",@"李四",@"王五",@"赵六", nil];
+    NSMutableArray *rm_person = [[NSMutableArray alloc]initWithCapacity:0];
+
     for (int i=0; i < arr_person_name.count; i ++)
     {
         for (int j = 0; j < self.already_Oder.count; j ++) {
             if ([[[self.already_Oder objectAtIndex:j]objectForKey:@"personName"] isEqualToString:[arr_person_name objectAtIndex:i]])
             {
-               
-                [arr_person_name removeObjectAtIndex:i];
-                
+                [rm_person addObject:[arr_person_name objectAtIndex:i]];
             }
-            
         }
+      
+    }
+    [arr_person_name removeObjectsInArray:rm_person];
+    
+    
+    total = 0;
+    for (int i = 0; i <[self.already_Oder count] ; i++ )
+    {
+        NSString *unit_price =  [[self.already_Oder objectAtIndex:i]objectForKey:@"packagePrice"];
+        total +=  unit_price.doubleValue;
         
     }
+    
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -93,13 +107,21 @@
     
     cell.packLabel.text = [[self.already_Oder objectAtIndex:row ]objectForKey:@"packageName"];
     
-    cell.priceLabel.text = [[self.already_Oder objectAtIndex:row]objectForKey:@"packagePrice"];
+    cell.priceLabel.text =[NSString stringWithFormat:@"¥%@",[[self.already_Oder objectAtIndex:row]objectForKey:@"packagePrice"]];
     
-    NSDictionary *person_count =  [[NSDictionary alloc]initWithObjectsAndKeys:cell.persLabel.text,@"oder_Name", nil];
-    
-    personNumber = (int)person_count.count;
-    number_not_order = 6 - personNumber;
-     
+       
+
+        
+    number_not_order = (int)arr_person_name.count;
+    personNumber = 6 - number_not_order;
+      
+        double doubleUnit_price = [(NSString *)([[self.already_Oder objectAtIndex:row]objectForKey:@"packagePrice"]) doubleValue];
+        
+        if ( doubleUnit_price > 11.00)
+        {
+            cell.priceLabel.textColor = [UIColor redColor];
+        }
+        
     }
     
     if (section == 1)
@@ -124,9 +146,10 @@
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 
 {
+    
     if (section == 0)
         return 0;
-    return [NSString stringWithFormat:@"%d人已定,%d人未定",personNumber,number_not_order];
+    return [NSString stringWithFormat:@"%d人已定,%d人未定,总计:%.2f元",personNumber,number_not_order,total];
     
 }
 

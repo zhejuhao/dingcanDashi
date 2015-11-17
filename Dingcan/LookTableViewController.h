@@ -14,6 +14,7 @@
     int personNumber;
     int number_not_order;
     NSMutableArray *arr_person_name;
+    double total;
 }
 
 @property(nonatomic,retain)UITableViewController *lookTableView;

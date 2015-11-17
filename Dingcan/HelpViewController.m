@@ -39,11 +39,11 @@
 //    
     
     
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"田园鸡腿堡",@"name",@"¥10.00",@"price", nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"黄金咖喱猪排饭",@"name",@"¥23.50",@"price", nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"意式肉酱猪排饭",@"name",@"¥16.00",@"price", nil];
-    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:@"老北京鸡肉卷",@"name",@"¥14.00",@"price", nil];
-    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:@"劲脆鸡腿堡",@"name",@"¥15.00",@"price", nil];
+    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"田园鸡腿堡",@"name",@"10.00",@"price", nil];
+    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"黄金咖喱猪排饭",@"name",@"23.50",@"price", nil];
+    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"意式肉酱猪排饭",@"name",@"16.00",@"price", nil];
+    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:@"老北京鸡肉卷",@"name",@"14.00",@"price", nil];
+    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:@"劲脆鸡腿堡",@"name",@"15.00",@"price", nil];
     
     
     dic_rest_package = [[NSDictionary alloc]initWithObjectsAndKeys:[NSArray arrayWithObjects:dic1,dic2,dic3, nil],@"KFC",[NSArray arrayWithObjects:dic4,dic5, nil],@"MDL", nil];
@@ -282,7 +282,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory ,NSUserDomainMask, YES);
     NSString  *docDir = [paths objectAtIndex:0];
 
-    NSString *filePath = [docDir stringByAppendingPathComponent:@"oder_List.plist"];
+    NSString *filePath = [docDir stringByAppendingPathComponent:@"oderinfo2.plist"];
 //    NSArray *orderList = [[NSArray alloc]initWithObjects:self.persName.text,self.resName.text,self.packName.text, nil];
 //    [orderList writeToFile:filePath atomically:YES];
     

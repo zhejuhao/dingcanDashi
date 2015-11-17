@@ -78,7 +78,8 @@
     NSUInteger row = [indexPath row];
     
     cell.textLabel.text = [[self.packList objectAtIndex:row]objectForKey:@"name"];
-    cell.detailTextLabel.text = [[self.packList objectAtIndex:row]objectForKey:@"price"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"¥%@",[[self.packList objectAtIndex:row]objectForKey:@"price"]];
+//    [[self.packList objectAtIndex:row]objectForKey:@"price"];
     
 
     
