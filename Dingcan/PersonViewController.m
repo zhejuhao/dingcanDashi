@@ -51,8 +51,6 @@
     [self.view addSubview:zhaoLiu];
     
     
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"zhaoda" object:nil];
 
 }
 

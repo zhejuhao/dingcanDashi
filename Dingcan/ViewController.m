@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "HelpViewController.h"
 #import "LookTableViewController.h"
-
+#import "CreatButton.h"
 
 @interface ViewController ()
 
@@ -21,34 +21,53 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btn1.frame = CGRectMake(35, 70, 300, 50);
-    [btn1 setTitle:@"帮订餐" forState:UIControlStateNormal];
-    btn1.titleLabel.font = [UIFont systemFontOfSize: 20.0];
-    //设置按钮字体大小
-    [btn1 addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    btn1.backgroundColor = [UIColor whiteColor];
-    [btn1.layer setCornerRadius:10.0];
-    [btn1.layer setBorderWidth:0.5];
-    [btn1.layer setBorderColor:[UIColor grayColor].CGColor];
+    UIButton *btn1 = [CreatButton creatButtonWithTitle:@"帮订餐" :CGRectMake(35, 70, 300, 50):@selector(btnPressed:) :self];
     [self.view addSubview:btn1];
-
     
-    UIButton *btn2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    btn2.frame =CGRectMake(35, 120,300, 50);
-    [btn2 setTitle:@"看订单" forState:UIControlStateNormal];
-    btn2.titleLabel.font = [UIFont systemFontOfSize: 20.0];
-    [btn2 addTarget:self action:@selector(btnPressed2:) forControlEvents:UIControlEventTouchUpInside];
-    btn2.backgroundColor = [UIColor whiteColor];
-    [btn2.layer setCornerRadius:10.0];
-    [btn2.layer setBorderWidth:0.5];
-    [btn2.layer setBorderColor:[UIColor grayColor].CGColor];
+
+
+    UIButton *btn2 = [CreatButton creatButtonWithTitle:@"看订单" :CGRectMake(35, 120,300, 50):@selector(btnPressed2:):self];
+    
     [self.view addSubview:btn2];
+
+    
+    
+    
+//    UIButton *btn1 = [self creatButtonWithTitle:@"帮订餐" :CGRectMake(35, 70, 300, 50):@selector(btnPressed:)];
+
+   
+    
+    
+//    UIButton *btn2 = [self creatButtonWithTitle:@"看订单" :CGRectMake(35, 120,300, 50):@selector(btnPressed2:)];
+
     
 
-//    
-    // Do any additional setup after loading the view, typically from a nib.
+    
+
+
 }
+
+//-(UIButton *)creatButtonWithTitle: (NSString *)title :(CGRect)frame :(SEL)buttonPressed
+//{
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [button  setFrame: frame];
+//    [button setTitle:title forState:UIControlStateNormal];
+//    button.titleLabel.font = [UIFont systemFontOfSize:20];
+//    button.backgroundColor = [UIColor whiteColor];
+//    [button.layer setCornerRadius:10.0];
+//    [button.layer setBorderWidth:0.5];
+//    [button.layer setBorderColor:[UIColor grayColor].CGColor];
+//    [button addTarget:self action:buttonPressed forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:button];
+//    return button;
+//}
+//
+
+//绿色标注的是实例方法
+
+
+
+
 -(void)btnPressed:(id)sender
 {
     HelpViewController *helpView = [[HelpViewController alloc]init];

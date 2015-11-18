@@ -34,9 +34,6 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    NSArray *restaurant = [NSArray arrayWithObjects:@"KFC",@"7-11",@"成都小吃", nil];
-//    self.restaurantList = restaurant;
-    
     
     
 }

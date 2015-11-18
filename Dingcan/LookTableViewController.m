@@ -26,7 +26,7 @@
     
     
     number_not_order = 6;
-    
+    //设置初始没有订餐的人数
     
     
     
@@ -37,31 +37,34 @@
     NSMutableArray *array_orderList = [[NSMutableArray alloc]initWithContentsOfFile:readPath];
    
     self.already_Oder = array_orderList;
-    
+    //取出沙盒的文件
     
  
-   arr_person_name = [[NSMutableArray alloc]initWithObjects:@"赵大",@"钱二",@"张三",@"李四",@"王五",@"赵六", nil];
+   arr_person_name = [[NSMutableArray alloc]initWithObjects:@"赵大",@"钱二",@"张三",@"李四",@"王五",@"赵六", nil];//声明一个人名组成的数组
+    
     NSMutableArray *rm_person = [[NSMutableArray alloc]initWithCapacity:0];
-
+//声明一个数组，初始化
+    
     for (int i=0; i < arr_person_name.count; i ++)
     {
         for (int j = 0; j < self.already_Oder.count; j ++) {
             if ([[[self.already_Oder objectAtIndex:j]objectForKey:@"personName"] isEqualToString:[arr_person_name objectAtIndex:i]])
             {
                 [rm_person addObject:[arr_person_name objectAtIndex:i]];
+                //如果沙盒里的人名和arr_person_name的人名一样的话  把一样的人名加到rm_person里
             }
         }
       
     }
     [arr_person_name removeObjectsInArray:rm_person];
+    //把rm_person从arr_person_name里删除 那arr_person_name就只剩下不同的人名了
     
-    
-    total = 0;
+    total = 0;  //总价初始为0
     for (int i = 0; i <[self.already_Oder count] ; i++ )
     {
         NSString *unit_price =  [[self.already_Oder objectAtIndex:i]objectForKey:@"packagePrice"];
         total +=  unit_price.doubleValue;
-        
+        //计算总价
     }
     
     
@@ -86,10 +89,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    NSInteger section = [indexPath section];
-    NSUInteger row = [indexPath row];
+    NSInteger section = [indexPath section];//获取section
     
-//    NSString *oder_Info = [self.already_Oder objectAtIndex:section ];
+    NSUInteger row = [indexPath row];
+
     
     
     static NSString *CellWithIndentifier = @"Cell";
@@ -112,10 +115,11 @@
        
 
         
-    number_not_order = (int)arr_person_name.count;
-    personNumber = 6 - number_not_order;
+    number_not_order = (int)arr_person_name.count;//没订餐的人数
+    personNumber = 6 - number_not_order;//已经订餐的人数
       
         double doubleUnit_price = [(NSString *)([[self.already_Oder objectAtIndex:row]objectForKey:@"packagePrice"]) doubleValue];
+        //把单价字符串转变为double型
         
         if ( doubleUnit_price > 11.00)
         {
@@ -133,7 +137,7 @@
     return cell;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section   //section的头标题
 {
     
     if (section == 0)
@@ -143,7 +147,7 @@
 }
 
 
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section  //section的脚标题
 
 {
     
