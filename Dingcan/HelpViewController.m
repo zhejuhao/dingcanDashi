@@ -53,8 +53,8 @@
     UILabel *persChoose = [self creat_label_with_board:CGRectMake(35, 110, 300, 45)];
     self.persName = persChoose;
     //    创建人名选择的label
-    UILabel *resChoose =[self creat_label_with_board:CGRectMake(35, 300,300, 45)];
-    self.resName = resChoose;
+    UILabel *restChoose =[self creat_label_with_board:CGRectMake(35, 300,300, 45)];
+    self.restName = restChoose;
     //    创建餐厅选择的label
     UILabel *packChoose = [self creat_label_with_board: CGRectMake(35, 490, 300, 45)];
     self.packName = packChoose;
@@ -64,23 +64,23 @@
 
 -(void)creat_button
 {
-    UIButton *btnPerson = [CreatButton creatButtonWithTitle:@"选人" :CGRectMake(35, 170, 300, 50) :@selector(btnPressedps:) :self];
+    UIButton *btnPerson = [CreatButton creatButtonWithTitle:@"选人" :CGRectMake(35, 170, 300, 50) :@selector(btnPressed_pers:) :self];
     [self.view addSubview:btnPerson];
     //创建选人的按钮
     
     
-    UIButton *btnRest =[CreatButton creatButtonWithTitle:@"选餐厅" :CGRectMake(35, 360, 300, 50) :@selector(btnPressedr:) :self];
+    UIButton *btnRest =[CreatButton creatButtonWithTitle:@"选餐厅" :CGRectMake(35, 360, 300, 50) :@selector(btnPressed_rest:) :self];
     [self.view addSubview:btnRest];
     //创建选餐厅的按钮
     
 
-    btnPackage = [CreatButton creatButtonWithTitle:@"选套餐" :CGRectMake(35, 550, 300, 50) :@selector(btnPressedpk:) :self];
+    btnPackage = [CreatButton creatButtonWithTitle:@"选套餐" :CGRectMake(35, 550, 300, 50) :@selector(btnPressed_pack:) :self];
     [btnPackage setEnabled:NO]; //初始设置选套餐的按钮不可点击
     [self.view addSubview:btnPackage];
     //创建选套餐的按钮
     
     
-    btnConfirm = [CreatButton creatButtonWithTitle:@"确认" :CGRectMake(35, 600, 300, 50) :@selector(btnPressedc:) :self];
+    btnConfirm = [CreatButton creatButtonWithTitle:@"确认" :CGRectMake(35, 600, 300, 50) :@selector(btnPressed_confirm:) :self];
     [btnConfirm setEnabled:NO];//初始设置确认的按钮不可点击
     [self.view addSubview:btnConfirm];
     //创建确认的按钮
@@ -129,7 +129,7 @@
 
 
 
--(void)btnPressedps:(id)sender
+-(void)btnPressed_pers:(id)sender
 {
     PersonViewController *personView = [[PersonViewController alloc]init];
     [self.navigationController pushViewController:personView animated:YES];
@@ -137,7 +137,7 @@
     //点选人按钮的动作是跳转到personView
 }
 
--(void)btnPressedr:(id)sender
+-(void)btnPressed_rest:(id)sender
 {
     RestaurantTableViewController *restaurantView = [[RestaurantTableViewController alloc]initWithStyle:UITableViewStyleGrouped :[dic_rest_package allKeys]];
     
@@ -147,9 +147,9 @@
 
 
 
--(void)btnPressedpk:(id)sender
+-(void)btnPressed_pack:(id)sender
 {
-    PackTableViewController *packageView = [[PackTableViewController alloc]initWithStyle:UITableViewStyleGrouped :[dic_rest_package objectForKey:self.resName.text]];
+    PackTableViewController *packageView = [[PackTableViewController alloc]initWithStyle:UITableViewStyleGrouped :[dic_rest_package objectForKey:self.restName.text]];
     
     [self.navigationController pushViewController:packageView animated:YES];
     
@@ -161,7 +161,7 @@
     self.persName.text = psnotification.object;
       //    反馈选人名字的通知
     
-    if (self.persName.text != nil && self.packName.text != nil && self.resName.text != nil)
+    if (self.persName.text != nil && self.packName.text != nil && self.restName.text != nil)
     {
         [btnConfirm setEnabled:YES];
     }
@@ -175,11 +175,11 @@
 
 -(void)notificationNamerest:(NSNotification *)rnotification
 {
-    self.resName.text = rnotification.object;
+    self.restName.text = rnotification.object;
     
 //    反馈选餐厅名字的通知
     
-    if (self.resName.text != nil)
+    if (self.restName.text != nil)
     {
         [btnPackage setEnabled:YES];//选了餐厅之后设置套餐按钮可以点击
     }
@@ -192,7 +192,7 @@
 
     //    反馈选套餐名字的通知
     
-    if (self.persName.text != nil && self.packName.text != nil && self.resName.text != nil)
+    if (self.persName.text != nil && self.packName.text != nil && self.restName.text != nil)
     {
         [btnConfirm setEnabled:YES];//如果人名、餐厅名、套餐名不为空设置确认按钮可点击
     }
@@ -201,32 +201,42 @@
 
 
 
--(void)btnPressedc:(id)sender
+
+
+-(NSString *)set_filePath_with_name  //沙盒机制
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory ,NSUserDomainMask, YES);
+    NSString  *docDir = [paths objectAtIndex:0];
+    //以上两行是获取Document目录
+    
+    NSString *filePath = [docDir stringByAppendingPathComponent:@"oderinfo3.plist"];
+    //“”内是自己起的名字  创建一个文件
+    return filePath;
+}
+
+
+
+-(void)btnPressed_confirm:(id)sender
 {
     
     
     [self.navigationController popViewControllerAnimated:YES];
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory ,NSUserDomainMask, YES);
-    NSString  *docDir = [paths objectAtIndex:0];
-    //以上两行是获取Document目录
-
-    NSString *filePath = [docDir stringByAppendingPathComponent:@"oderinfo2.plist"];
-    //“”内是自己起的名字  创建一个文件
-    
-    NSArray *arr = [dic_rest_package objectForKey:self.resName.text];
+    NSArray *arr = [dic_rest_package objectForKey:self.restName.text];
     
     for (int i=0; i<arr.count; i++) {
         if ([[[arr objectAtIndex:i]objectForKey:@"name"] isEqualToString: self.packName.text])
         {
-            self.pack_price  = [[arr objectAtIndex:i]objectForKey:@"price"];
+          self.pack_price  = [[arr objectAtIndex:i]objectForKey:@"price"];
         }
     }
     
-    NSDictionary *order = [[NSDictionary alloc]initWithObjectsAndKeys:self.persName.text,@"personName",self.resName.text,@"restaurant",self.packName.text,@"packageName",self.pack_price,@"packagePrice",  nil];
+   
     
+    NSDictionary *order = [[NSDictionary alloc]initWithObjectsAndKeys:self.persName.text,@"personName",self.restName.text,@"restaurant",self.packName.text,@"packageName",self.pack_price,@"packagePrice",  nil];
     
-    NSMutableArray *array_orders = [[NSMutableArray alloc]initWithContentsOfFile:filePath];
+    NSString *file_path = [self set_filePath_with_name];
+    NSMutableArray *array_orders = [[NSMutableArray alloc]initWithContentsOfFile:file_path];
 //    先取出来
     if (array_orders == nil) {
         array_orders = [[NSMutableArray alloc]initWithCapacity:0];
@@ -234,14 +244,14 @@
     [array_orders addObject:order];
 //    再一起加进去就不会覆盖以前的数据了。
     
-    BOOL is_save_success = [array_orders writeToFile:filePath atomically:YES];
+    BOOL is_save_success = [array_orders writeToFile:file_path atomically:YES];
     if (is_save_success == true)
     {
         [(UIButton *)sender setEnabled:NO];
     }
 
 }
-//   确定的通知
+//   确定按钮跳转至上一层
 
 
 

@@ -13,6 +13,28 @@
 @implementation LookTableViewController
 
 
+-(NSString *)read_filePath_with_name
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory ,NSUserDomainMask, YES);
+    NSString  *docDir = [paths objectAtIndex:0];
+    
+    NSString *readPath = [docDir stringByAppendingPathComponent:@"oderinfo3.plist"];
+    return readPath;
+}
+
+-(double)total_price
+{
+    total = 0;  //总价初始为0
+    for (int i = 0; i <[self.already_Oder count] ; i++ )
+    {
+        NSString *unit_price =  [[self.already_Oder objectAtIndex:i]objectForKey:@"packagePrice"];
+        total +=  unit_price.doubleValue;
+        //计算总价
+    }
+
+    return total;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -29,12 +51,8 @@
     //设置初始没有订餐的人数
     
     
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory ,NSUserDomainMask, YES);
-    NSString  *docDir = [paths objectAtIndex:0];
-    
-    NSString *readPath = [docDir stringByAppendingPathComponent:@"oderinfo2.plist"];
-    NSMutableArray *array_orderList = [[NSMutableArray alloc]initWithContentsOfFile:readPath];
+    NSString *read_path = [self read_filePath_with_name];
+    NSMutableArray *array_orderList = [[NSMutableArray alloc]initWithContentsOfFile:read_path];
    
     self.already_Oder = array_orderList;
     //取出沙盒的文件
@@ -58,15 +76,8 @@
     }
     [arr_person_name removeObjectsInArray:rm_person];
     //把rm_person从arr_person_name里删除 那arr_person_name就只剩下不同的人名了
-    
-    total = 0;  //总价初始为0
-    for (int i = 0; i <[self.already_Oder count] ; i++ )
-    {
-        NSString *unit_price =  [[self.already_Oder objectAtIndex:i]objectForKey:@"packagePrice"];
-        total +=  unit_price.doubleValue;
-        //计算总价
-    }
-    
+
+    [self total_price];
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

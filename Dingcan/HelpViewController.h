@@ -15,7 +15,7 @@
     UIButton *btnConfirm ;
     UIButton *btnPackage ;
 }
-@property(nonatomic,retain)UILabel *resName;
+@property(nonatomic,retain)UILabel *restName;
 @property(nonatomic,retain)UILabel *packName;
 @property(nonatomic,retain)UILabel *persName;
 @property(nonatomic,retain)NSString *pack_price;

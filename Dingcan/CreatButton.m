@@ -21,7 +21,7 @@
     [button.layer setBorderWidth:0.5];
     [button.layer setBorderColor:[UIColor grayColor].CGColor];
     [button addTarget:target action:buttonPressed forControlEvents:UIControlEventTouchUpInside];
-    
+
     return button;
 }
 

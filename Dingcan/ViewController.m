@@ -21,14 +21,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIButton *btn1 = [CreatButton creatButtonWithTitle:@"帮订餐" :CGRectMake(35, 70, 300, 50):@selector(btnPressed:) :self];
-    [self.view addSubview:btn1];
+    UIButton *btn_help = [CreatButton creatButtonWithTitle:@"帮订餐" :CGRectMake(35, 70, 300, 50):@selector(btnPressed1:) :self];
+    [self.view addSubview:btn_help];
     
 
 
-    UIButton *btn2 = [CreatButton creatButtonWithTitle:@"看订单" :CGRectMake(35, 120,300, 50):@selector(btnPressed2:):self];
+    UIButton *btn_look = [CreatButton creatButtonWithTitle:@"看订单" :CGRectMake(35, 120,300, 50):@selector(btnPressed2:):self];
     
-    [self.view addSubview:btn2];
+    [self.view addSubview:btn_look];
 
     
     
@@ -42,7 +42,7 @@
 
 
 
--(void)btnPressed:(id)sender
+-(void)btnPressed1:(id)sender
 {
     HelpViewController *helpView = [[HelpViewController alloc]init];
     [self.navigationController pushViewController:helpView animated:YES];
