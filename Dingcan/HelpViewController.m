@@ -40,15 +40,54 @@
     return choose_label;
 }
 
+-(void)creat_label
+{
+    
+    [self creat_label_with_text:@"人：" :CGRectMake(10, 60,70, 50)];
+    //    创建一个内容为 人 的label
+    [self creat_label_with_text:@"餐厅：" :CGRectMake(10, 250,70, 50)];
+    //    创建一个内容为 餐厅 的label
+    [self creat_label_with_text:@"套餐：" :CGRectMake(10, 450,70, 50)];
+    //    创建一个内容为 套餐 的label
+    
+    UILabel *persChoose = [self creat_label_with_board:CGRectMake(35, 110, 300, 45)];
+    self.persName = persChoose;
+    //    创建人名选择的label
+    UILabel *resChoose =[self creat_label_with_board:CGRectMake(35, 300,300, 45)];
+    self.resName = resChoose;
+    //    创建餐厅选择的label
+    UILabel *packChoose = [self creat_label_with_board: CGRectMake(35, 490, 300, 45)];
+    self.packName = packChoose;
+    //    创建套餐选择的label
+}
 
 
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+-(void)creat_button
+{
+    UIButton *btnPerson = [CreatButton creatButtonWithTitle:@"选人" :CGRectMake(35, 170, 300, 50) :@selector(btnPressedps:) :self];
+    [self.view addSubview:btnPerson];
+    //创建选人的按钮
     
     
+    UIButton *btnRest =[CreatButton creatButtonWithTitle:@"选餐厅" :CGRectMake(35, 360, 300, 50) :@selector(btnPressedr:) :self];
+    [self.view addSubview:btnRest];
+    //创建选餐厅的按钮
+    
+
+    btnPackage = [CreatButton creatButtonWithTitle:@"选套餐" :CGRectMake(35, 550, 300, 50) :@selector(btnPressedpk:) :self];
+    [btnPackage setEnabled:NO]; //初始设置选套餐的按钮不可点击
+    [self.view addSubview:btnPackage];
+    //创建选套餐的按钮
+    
+    
+    btnConfirm = [CreatButton creatButtonWithTitle:@"确认" :CGRectMake(35, 600, 300, 50) :@selector(btnPressedc:) :self];
+    [btnConfirm setEnabled:NO];//初始设置确认的按钮不可点击
+    [self.view addSubview:btnConfirm];
+    //创建确认的按钮
+
+}
+-(void)creat_dictionary
+{
     NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"田园鸡腿堡",@"name",@"10.00",@"price", nil];
     NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"黄金咖喱猪排饭",@"name",@"23.50",@"price", nil];
     NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"意式肉酱猪排饭",@"name",@"16.00",@"price", nil];
@@ -57,94 +96,26 @@
     
     
     dic_rest_package = [[NSDictionary alloc]initWithObjectsAndKeys:[NSArray arrayWithObjects:dic1,dic2,dic3, nil],@"KFC",[NSArray arrayWithObjects:dic4,dic5, nil],@"MDL", nil];
-//    定义一个字典，把字典dic1,dic2,dic3放进一个数组里，与key kfc对应  把dic4，dic5放到一个数组里与key mdl对应。
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-    
-     [self creat_label_with_text:@"人：" :CGRectMake(10, 60,70, 50)];
-  //    创建一个内容为 人 的label
-     [self creat_label_with_text:@"餐厅：" :CGRectMake(10, 250,70, 50)];
-//    创建一个内容为 餐厅 的label
-    [self creat_label_with_text:@"套餐：" :CGRectMake(10, 450,70, 50)];
-//    创建一个内容为 套餐 的label
+    //    定义一个字典，把字典dic1,dic2,dic3放进一个数组里，与key kfc对应  把dic4，dic5放到一个数组里与key mdl对应。
 
-    
-    
-    
-    
-    
-    UIButton *btnPerson = [CreatButton creatButtonWithTitle:@"选人" :CGRectMake(35, 170, 300, 50) :@selector(btnPressedps:) :self];
-    [self.view addSubview:btnPerson];
-    //创建选人的按钮
-    
+}
 
-    UIButton *btnRest =[CreatButton creatButtonWithTitle:@"选餐厅" :CGRectMake(35, 360, 300, 50) :@selector(btnPressedr:) :self];
-    [self.view addSubview:btnRest];
-    //创建选餐厅的按钮
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    
-    
-    btnPackage = [CreatButton creatButtonWithTitle:@"选套餐" :CGRectMake(35, 550, 300, 50) :@selector(btnPressedpk:) :self];
-    [btnPackage setEnabled:NO]; //初始设置选套餐的按钮不可点击
-    [self.view addSubview:btnPackage];
-    //创建选套餐的按钮
-    
-
-    
-    btnConfirm = [CreatButton creatButtonWithTitle:@"确认" :CGRectMake(35, 600, 300, 50) :@selector(btnPressedc:) :self];
-    [btnConfirm setEnabled:NO];//初始设置确认的按钮不可点击
-    [self.view addSubview:btnConfirm];
-    //创建确认的按钮
-    
-    
-    
-    
-    
-    UILabel *persChoose = [[UILabel alloc]initWithFrame:CGRectMake(35, 110, 300, 45)];
-    self.persName = persChoose;
-    persChoose.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:persChoose];
-    
+    [self creat_label];
+    [self creat_button];
+    [self creat_dictionary];
+ 
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationNamepers:) name:@"persRset" object:nil];
     
-    //    创建人名选择的label
-    
-    
-    
-    UILabel *resChoose = [[UILabel alloc]initWithFrame:CGRectMake(35, 300,300, 45)];
-    self.resName = resChoose;
-    resChoose.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:resChoose];
-    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationNamerest:) name:@"nameRset" object:nil];
-//    创建餐厅选择的label     坐标和大小加背景颜色显示出框架  初始是没有内容的
-    
-    
-    UILabel *packChoose = [[UILabel alloc]initWithFrame:CGRectMake(35, 490, 300, 45)];
-    self.packName = packChoose;
-    packChoose.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:packChoose];
-    
+
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationNamepack:) name:@"packRset" object:nil];
-    
- //    创建套餐选择的label
-    
-    
-    
-    
-    
-    
-    
+
+
 }
 
     
@@ -185,10 +156,6 @@
 }//点选套餐按钮的动作是跳转到packageView
     
 
-
-
-
-
 -(void)notificationNamepers:(NSNotification *)psnotification
 {
     self.persName.text = psnotification.object;
@@ -198,8 +165,6 @@
     {
         [btnConfirm setEnabled:YES];
     }
-
-    
     
 }
 
@@ -221,8 +186,6 @@
 }
 
 
-
-
 -(void)notificationNamepack:(NSNotification *)pknotification
 {
     self.packName.text = pknotification.object;
@@ -235,8 +198,6 @@
     }
     
 }    //如果先选套餐，人名不选的话，确定是不可点击的，再选人名之后，依旧不可点击，所以在人名的通知里再写一遍这个条件
-
-
 
 
 

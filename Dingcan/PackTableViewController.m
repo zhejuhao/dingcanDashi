@@ -33,15 +33,6 @@
     
     
     
-//
-//   
-//    
-//
-//    
-//    self.packList = [NSArray arrayWithObjects:dic1,dic2,dic3,dic4,dic5,nil];
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

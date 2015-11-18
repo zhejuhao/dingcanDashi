@@ -32,38 +32,12 @@
 
     
     
-    
-//    UIButton *btn1 = [self creatButtonWithTitle:@"帮订餐" :CGRectMake(35, 70, 300, 50):@selector(btnPressed:)];
-
-   
-    
-    
-//    UIButton *btn2 = [self creatButtonWithTitle:@"看订单" :CGRectMake(35, 120,300, 50):@selector(btnPressed2:)];
-
-    
-
+  
     
 
 
 }
 
-//-(UIButton *)creatButtonWithTitle: (NSString *)title :(CGRect)frame :(SEL)buttonPressed
-//{
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [button  setFrame: frame];
-//    [button setTitle:title forState:UIControlStateNormal];
-//    button.titleLabel.font = [UIFont systemFontOfSize:20];
-//    button.backgroundColor = [UIColor whiteColor];
-//    [button.layer setCornerRadius:10.0];
-//    [button.layer setBorderWidth:0.5];
-//    [button.layer setBorderColor:[UIColor grayColor].CGColor];
-//    [button addTarget:self action:buttonPressed forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:button];
-//    return button;
-//}
-//
-
-//绿色标注的是实例方法
 
 
 
