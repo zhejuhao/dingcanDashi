@@ -8,7 +8,7 @@
 
 #import "LookTableViewController.h"
 #import "DingDanTableViewCell.h"
-
+#import "NavigationItem.h"
 
 @implementation LookTableViewController
 
@@ -18,21 +18,60 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory ,NSUserDomainMask, YES);
     NSString  *docDir = [paths objectAtIndex:0];
     
-    NSString *readPath = [docDir stringByAppendingPathComponent:@"oderinfo3.plist"];
+    NSString *readPath = [docDir stringByAppendingPathComponent:@"oderinfo4.plist"];
     return readPath;
 }
 
 -(double)total_price
 {
-    total = 0;  //总价初始为0
+    m_total = 0;  //总价初始为0
     for (int i = 0; i <[self.already_Oder count] ; i++ )
     {
         NSString *unit_price =  [[self.already_Oder objectAtIndex:i]objectForKey:@"packagePrice"];
-        total +=  unit_price.doubleValue;
+        m_total +=  unit_price.doubleValue;
         //计算总价
     }
 
-    return total;
+    return m_total;
+}
+
+-(NSArray *)person_not_order
+{
+    
+    m_arr_person_name = [[NSMutableArray alloc]initWithObjects:@"赵大",@"钱二",@"张三",@"李四",@"王五",@"赵六", nil];//声明一个人名组成的数组
+    
+    NSMutableArray *person_name_already_order = [[NSMutableArray alloc]initWithCapacity:0];
+    //声明一个数组，初始化
+    
+    for (int i=0; i < m_arr_person_name.count; i ++)
+    {
+        for (int j = 0; j < self.already_Oder.count; j ++) {
+            if ([[[self.already_Oder objectAtIndex:j]objectForKey:@"personName"] isEqualToString:[m_arr_person_name objectAtIndex:i]])
+            {
+                [person_name_already_order addObject:[m_arr_person_name objectAtIndex:i]];
+                //如果沙盒里的人名和arr_person_name的人名一样的话  把一样的人名加到rm_person里
+            }
+        }
+        
+    }
+    [m_arr_person_name removeObjectsInArray:person_name_already_order];
+    //把rm_person从arr_person_name里删除 那arr_person_name就只剩下不同的人名了
+
+    return m_arr_person_name;
+}
+
+-(UIToolbar *)creat_toolbar
+{
+    UIToolbar *toolbar =[[UIToolbar alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-90,self.view.frame.size.width, 50)];
+    UILabel *toolbar_label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    toolbar_label.backgroundColor = [UIColor blackColor];
+    toolbar_label.textColor = [UIColor whiteColor];
+    toolbar_label.text = [NSString stringWithFormat:@"%d人已定,%d人未定,总计:%.2f元",m_personNumber,m_number_not_order,m_total];
+    toolbar_label.textAlignment = UITextAlignmentCenter;
+    toolbar_label.font = [UIFont boldSystemFontOfSize:20];
+    [self.view addSubview:toolbar];
+    [toolbar addSubview:toolbar_label];
+    return toolbar;
 }
 
 - (void)viewDidLoad {
@@ -41,44 +80,24 @@
     
     self.lookTableView = [[UITableViewController alloc]initWithStyle:UITableViewStyleGrouped];
 
-    
-    self.navigationItem.title = @"看订单";
+    UILabel *label_look_order =  [NavigationItem creat_item_label:@"订单显示" :CGRectMake(0, 0, 200, 50)];
+    self.navigationItem.titleView = label_look_order;
 //    设置页面标题
    
-    
-    
-    number_not_order = 6;
+    m_number_not_order = 6;
     //设置初始没有订餐的人数
-    
     
     NSString *read_path = [self read_filePath_with_name];
     NSMutableArray *array_orderList = [[NSMutableArray alloc]initWithContentsOfFile:read_path];
    
     self.already_Oder = array_orderList;
     //取出沙盒的文件
-    
- 
-   arr_person_name = [[NSMutableArray alloc]initWithObjects:@"赵大",@"钱二",@"张三",@"李四",@"王五",@"赵六", nil];//声明一个人名组成的数组
-    
-    NSMutableArray *rm_person = [[NSMutableArray alloc]initWithCapacity:0];
-//声明一个数组，初始化
-    
-    for (int i=0; i < arr_person_name.count; i ++)
-    {
-        for (int j = 0; j < self.already_Oder.count; j ++) {
-            if ([[[self.already_Oder objectAtIndex:j]objectForKey:@"personName"] isEqualToString:[arr_person_name objectAtIndex:i]])
-            {
-                [rm_person addObject:[arr_person_name objectAtIndex:i]];
-                //如果沙盒里的人名和arr_person_name的人名一样的话  把一样的人名加到rm_person里
-            }
-        }
-      
-    }
-    [arr_person_name removeObjectsInArray:rm_person];
-    //把rm_person从arr_person_name里删除 那arr_person_name就只剩下不同的人名了
-
+    [self person_not_order];
     [self total_price];
-    
+    [self creat_toolbar];
+    m_number_not_order = (int)m_arr_person_name.count;//没订餐的人数
+    m_personNumber = 6 - m_number_not_order;//已经订餐的人数
+
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
@@ -92,81 +111,71 @@
     if (section == 0) {
         return [self.already_Oder count];
     }
-    return [arr_person_name count];
+    return [m_arr_person_name count];
     
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    NSInteger section = [indexPath section];//获取section
-    
-    NSUInteger row = [indexPath row];
-
-    
-    
     static NSString *CellWithIndentifier = @"Cell";
-    
     DingDanTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellWithIndentifier];
     if(cell == nil)
     {
         cell = [[DingDanTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellWithIndentifier];
-        
     }
-    
-    if (section == 0 ) {
-        
-    cell.persLabel.text = [[self.already_Oder objectAtIndex:row]objectForKey:@"personName" ];
-    
-    cell.packLabel.text = [[self.already_Oder objectAtIndex:row ]objectForKey:@"packageName"];
-    
-    cell.priceLabel.text =[NSString stringWithFormat:@"¥%@",[[self.already_Oder objectAtIndex:row]objectForKey:@"packagePrice"]];
-    
-       
-
-        
-    number_not_order = (int)arr_person_name.count;//没订餐的人数
-    personNumber = 6 - number_not_order;//已经订餐的人数
-      
-        double doubleUnit_price = [(NSString *)([[self.already_Oder objectAtIndex:row]objectForKey:@"packagePrice"]) doubleValue];
-        //把单价字符串转变为double型
-        
-        if ( doubleUnit_price > 11.00)
-        {
-            cell.priceLabel.textColor = [UIColor redColor];
-        }
-        
-    }
-    
-    if (section == 1)
+    if (indexPath.section == 0 )
     {
-        cell.persLabel.text = [ arr_person_name objectAtIndex:row];
+        [cell setCellInfoWithDicInfo:[self.already_Oder objectAtIndex:indexPath.row]];
+        cell.priceLabel.textColor = [self getCellPriceColor:(int)indexPath.row];
     }
-    // Configure the cell...
+    else
+        cell.persLabel.text = [ m_arr_person_name objectAtIndex:indexPath.row];
     
     return cell;
 }
-
+- (UIColor *)getCellPriceColor :(int)row
+{
+    UIColor *priceColor = [UIColor blackColor];
+    if ([[[self.already_Oder objectAtIndex:row]objectForKey:@"packagePrice"]doubleValue] > 11.00)
+    {
+        priceColor = [UIColor redColor];
+    }
+    return priceColor;
+}
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section   //section的头标题
 {
+//    UIView *headerView = [[UIView alloc]init];
+//    UILabel *headerTitle =[[UILabel alloc]init];
+//    headerTitle.textColor = [UIColor whiteColor];
+//    headerTitle.backgroundColor = [UIColor blueColor];
     
     if (section == 0)
-        return [NSString stringWithFormat:@"%d人已定",personNumber];
-    return [NSString stringWithFormat:@"%d人未定",number_not_order];
-    
+    {
+//        UILabel *header_label_order =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+//      header_label_order.text=[NSString stringWithFormat:@"%d人已定",m_personNumber];
+//        return header_label_order;
+       return  [NSString stringWithFormat:@"%d人已定",m_personNumber];
+    }
+    else
+    {
+//        UILabel *header_label_not_order =[[UILabel alloc]initWithFrame:CGRectMake(0, 300, self.view.frame.size.width, 40)];
+//        header_label_not_order.text =  [NSString stringWithFormat:@"%d人未定",m_number_not_order];
+//        return header_label_not_order;
+       return  [NSString stringWithFormat:@"%d人未定",m_number_not_order];
+    }
+//    [headerView addSubview:headerTitle];
+//    return headerView;
+
 }
-
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section  //section的脚标题
-
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    
     if (section == 0)
-        return 0;
-    return [NSString stringWithFormat:@"%d人已定,%d人未定,总计:%.2f元",personNumber,number_not_order,total];
-    
-}
+        return 44.0;
+    return 45.0;
+}//设置头标题的高度
+
+
+
 
 
 @end

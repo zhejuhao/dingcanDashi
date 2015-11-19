@@ -14,4 +14,6 @@
 @property(nonatomic,retain)UILabel *priceLabel;
 @property(nonatomic,retain)UILabel *packLabel;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
+- (void)setCellInfoWithPersonName :(NSString *)personName packageName :(NSString *)packageName PackagePrice :(NSString *)price;
+- (void)setCellInfoWithDicInfo :(NSDictionary *)dicInfo;
 @end

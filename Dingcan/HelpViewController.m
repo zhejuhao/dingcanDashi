@@ -9,7 +9,7 @@
 #import "HelpViewController.h"
 #import "PersonViewController.h"
 #import "RestaurantTableViewController.h"
-
+#import "NavigationItem.h"
 #import "PackTableViewController.h"
 
 #import "CreatButton.h"
@@ -25,6 +25,7 @@
     UILabel *label = [[UILabel alloc]initWithFrame:frame];
     label.text = text;
     label.textColor = [UIColor blackColor];
+    label.font = [UIFont boldSystemFontOfSize:20];
     [self.view addSubview:label];
     return label;
 }
@@ -32,7 +33,7 @@
 -(UILabel *)creat_label_with_board :(CGRect)frame
 {
     UILabel *choose_label = [[UILabel alloc]initWithFrame:frame];
-    choose_label.backgroundColor = [UIColor grayColor];
+    choose_label.backgroundColor = [UIColor whiteColor];
     choose_label.layer.borderColor = [UIColor grayColor].CGColor;
     choose_label.layer.borderWidth = 0.5;
     choose_label.layer.cornerRadius = 10.0;
@@ -74,28 +75,30 @@
     //创建选餐厅的按钮
     
 
-    btnPackage = [CreatButton creatButtonWithTitle:@"选套餐" :CGRectMake(35, 550, 300, 50) :@selector(btnPressed_pack:) :self];
-    [btnPackage setEnabled:NO]; //初始设置选套餐的按钮不可点击
-    [self.view addSubview:btnPackage];
+    m_btnPackage = [CreatButton creatButtonWithTitle:@"选套餐" :CGRectMake(35, 550, 300, 50) :@selector(btnPressed_pack:) :self];
+    [m_btnPackage setEnabled:NO]; //初始设置选套餐的按钮不可点击
+    [m_btnPackage setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.view addSubview:m_btnPackage];
     //创建选套餐的按钮
     
     
-    btnConfirm = [CreatButton creatButtonWithTitle:@"确认" :CGRectMake(35, 600, 300, 50) :@selector(btnPressed_confirm:) :self];
-    [btnConfirm setEnabled:NO];//初始设置确认的按钮不可点击
-    [self.view addSubview:btnConfirm];
+    m_btnConfirm = [CreatButton creatButtonWithTitle:@"确认" :CGRectMake(35, 600, 300, 50) :@selector(btnPressed_confirm:) :self];
+    [m_btnConfirm setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [m_btnConfirm setEnabled:NO];//初始设置确认的按钮不可点击
+    [self.view addSubview:m_btnConfirm];
     //创建确认的按钮
 
 }
 -(void)creat_dictionary
 {
-    NSDictionary *dic1 = [NSDictionary dictionaryWithObjectsAndKeys:@"田园鸡腿堡",@"name",@"10.00",@"price", nil];
-    NSDictionary *dic2 = [NSDictionary dictionaryWithObjectsAndKeys:@"黄金咖喱猪排饭",@"name",@"23.50",@"price", nil];
-    NSDictionary *dic3 = [NSDictionary dictionaryWithObjectsAndKeys:@"意式肉酱猪排饭",@"name",@"16.00",@"price", nil];
-    NSDictionary *dic4 = [NSDictionary dictionaryWithObjectsAndKeys:@"老北京鸡肉卷",@"name",@"14.00",@"price", nil];
-    NSDictionary *dic5 = [NSDictionary dictionaryWithObjectsAndKeys:@"劲脆鸡腿堡",@"name",@"15.00",@"price", nil];
+    NSDictionary *dic_pack1 = [NSDictionary dictionaryWithObjectsAndKeys:@"田园鸡腿堡",@"pack_name",@"10.00",@"pack_price", nil];
+    NSDictionary *dic_pack2 = [NSDictionary dictionaryWithObjectsAndKeys:@"黄金咖喱猪排饭",@"pack_name",@"23.50",@"pack_price", nil];
+    NSDictionary *dic_pack3 = [NSDictionary dictionaryWithObjectsAndKeys:@"意式肉酱猪排饭",@"pack_name",@"16.00",@"pack_price", nil];
+    NSDictionary *dic_pack4 = [NSDictionary dictionaryWithObjectsAndKeys:@"老北京鸡肉卷",@"pack_name",@"14.00",@"pack_price", nil];
+    NSDictionary *dic_pack5 = [NSDictionary dictionaryWithObjectsAndKeys:@"劲脆鸡腿堡",@"pack_name",@"15.00",@"pack_price", nil];
     
     
-    dic_rest_package = [[NSDictionary alloc]initWithObjectsAndKeys:[NSArray arrayWithObjects:dic1,dic2,dic3, nil],@"KFC",[NSArray arrayWithObjects:dic4,dic5, nil],@"MDL", nil];
+    m_dic_rest_package = [[NSDictionary alloc]initWithObjectsAndKeys:[NSArray arrayWithObjects:dic_pack1,dic_pack2,dic_pack3, nil],@"KFC",[NSArray arrayWithObjects:dic_pack4,dic_pack5, nil],@"MDL", nil];
     //    定义一个字典，把字典dic1,dic2,dic3放进一个数组里，与key kfc对应  把dic4，dic5放到一个数组里与key mdl对应。
 
 }
@@ -108,12 +111,14 @@
     [self creat_label];
     [self creat_button];
     [self creat_dictionary];
- 
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationNamepers:) name:@"persRset" object:nil];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationNamerest:) name:@"nameRset" object:nil];
+    UILabel *label_dingCan = [NavigationItem creat_item_label:@"订餐" :CGRectMake(0,0,200,50)];
+    self.navigationItem.titleView = label_dingCan;
 
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationNamepack:) name:@"packRset" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationNamepers:) name:@"person_choose" object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationNamerest:) name:@"rest_choose" object:nil];
+
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(notificationNamepack:) name:@"pack_choose" object:nil];
 
 
 }
@@ -139,7 +144,7 @@
 
 -(void)btnPressed_rest:(id)sender
 {
-    RestaurantTableViewController *restaurantView = [[RestaurantTableViewController alloc]initWithStyle:UITableViewStyleGrouped :[dic_rest_package allKeys]];
+    RestaurantTableViewController *restaurantView = [[RestaurantTableViewController alloc]initWithStyle:UITableViewStyleGrouped :[m_dic_rest_package allKeys]];
     
     [self.navigationController pushViewController:restaurantView animated:YES];
 
@@ -149,7 +154,7 @@
 
 -(void)btnPressed_pack:(id)sender
 {
-    PackTableViewController *packageView = [[PackTableViewController alloc]initWithStyle:UITableViewStyleGrouped :[dic_rest_package objectForKey:self.restName.text]];
+    PackTableViewController *packageView = [[PackTableViewController alloc]initWithStyle:UITableViewStyleGrouped :[m_dic_rest_package objectForKey:self.restName.text]];
     
     [self.navigationController pushViewController:packageView animated:YES];
     
@@ -163,7 +168,8 @@
     
     if (self.persName.text != nil && self.packName.text != nil && self.restName.text != nil)
     {
-        [btnConfirm setEnabled:YES];
+        [m_btnConfirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [m_btnConfirm setEnabled:YES];
     }
     
 }
@@ -181,7 +187,8 @@
     
     if (self.restName.text != nil)
     {
-        [btnPackage setEnabled:YES];//选了餐厅之后设置套餐按钮可以点击
+        [m_btnPackage setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [m_btnPackage setEnabled:YES];//选了餐厅之后设置套餐按钮可以点击
     }
 }
 
@@ -194,7 +201,8 @@
     
     if (self.persName.text != nil && self.packName.text != nil && self.restName.text != nil)
     {
-        [btnConfirm setEnabled:YES];//如果人名、餐厅名、套餐名不为空设置确认按钮可点击
+        [m_btnConfirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [m_btnConfirm setEnabled:YES];//如果人名、餐厅名、套餐名不为空设置确认按钮可点击
     }
     
 }    //如果先选套餐，人名不选的话，确定是不可点击的，再选人名之后，依旧不可点击，所以在人名的通知里再写一遍这个条件
@@ -209,12 +217,24 @@
     NSString  *docDir = [paths objectAtIndex:0];
     //以上两行是获取Document目录
     
-    NSString *filePath = [docDir stringByAppendingPathComponent:@"oderinfo3.plist"];
+    NSString *filePath = [docDir stringByAppendingPathComponent:@"oderinfo4.plist"];
     //“”内是自己起的名字  创建一个文件
     return filePath;
 }
 
+-(NSString *)package_price
+{
+    NSArray *arr = [m_dic_rest_package objectForKey:self.restName.text];
+    NSString *pack_price;
+    for (int i=0; i<arr.count; i++) {
+        if ([[[arr objectAtIndex:i]objectForKey:@"pack_name"] isEqualToString: self.packName.text])
+        {
+            pack_price  = [[arr objectAtIndex:i]objectForKey:@"pack_price"];
+        }
+    }
 
+    return pack_price;
+}//把套餐的价格和套餐对应起来
 
 -(void)btnPressed_confirm:(id)sender
 {
@@ -222,18 +242,8 @@
     
     [self.navigationController popViewControllerAnimated:YES];
     
-    NSArray *arr = [dic_rest_package objectForKey:self.restName.text];
     
-    for (int i=0; i<arr.count; i++) {
-        if ([[[arr objectAtIndex:i]objectForKey:@"name"] isEqualToString: self.packName.text])
-        {
-          self.pack_price  = [[arr objectAtIndex:i]objectForKey:@"price"];
-        }
-    }
-    
-   
-    
-    NSDictionary *order = [[NSDictionary alloc]initWithObjectsAndKeys:self.persName.text,@"personName",self.restName.text,@"restaurant",self.packName.text,@"packageName",self.pack_price,@"packagePrice",  nil];
+    NSDictionary *order = [[NSDictionary alloc]initWithObjectsAndKeys:self.persName.text,@"personName",self.restName.text,@"restaurant",self.packName.text,@"packageName",[self package_price],@"packagePrice",  nil];
     
     NSString *file_path = [self set_filePath_with_name];
     NSMutableArray *array_orders = [[NSMutableArray alloc]initWithContentsOfFile:file_path];
@@ -251,7 +261,7 @@
     }
 
 }
-//   确定按钮跳转至上一层
+//   确定的通知
 
 
 

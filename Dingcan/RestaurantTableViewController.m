@@ -7,6 +7,7 @@
 //
 
 #import "RestaurantTableViewController.h"
+#import "NavigationItem.h"
 
 @interface RestaurantTableViewController ()
 
@@ -34,7 +35,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
+    UILabel *label_choose_restaurant = [NavigationItem creat_item_label:@"选餐厅" :CGRectMake(0,0,200,50)];
+    self.navigationItem.titleView = label_choose_restaurant;
     
 }
 
@@ -72,13 +74,15 @@
     NSUInteger row = [indexPath row];
     
     cell.textLabel.text = [self.restaurantList objectAtIndex:row];
+    cell.textLabel.textColor = [UIColor blueColor];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
     
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *resName =[self.restaurantList objectAtIndex:[indexPath row]];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"nameRset" object:resName userInfo:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"rest_choose" object:resName userInfo:nil];
     [self. navigationController popViewControllerAnimated:YES];
 }
 //

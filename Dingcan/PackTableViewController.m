@@ -7,6 +7,7 @@
 //
 
 #import "PackTableViewController.h"
+#import "NavigationItem.h"
 
 @interface PackTableViewController ()
 
@@ -30,7 +31,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    UILabel *label_choose_package = [NavigationItem creat_item_label:@"选套餐" :CGRectMake(0,0,200,50)];
+    self.navigationItem.titleView = label_choose_package;
     
     
 }
@@ -68,9 +70,12 @@
     
     NSUInteger row = [indexPath row];
     
-    cell.textLabel.text = [[self.packList objectAtIndex:row]objectForKey:@"name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"¥%@",[[self.packList objectAtIndex:row]objectForKey:@"price"]];
-//    [[self.packList objectAtIndex:row]objectForKey:@"price"];
+    cell.textLabel.text = [[self.packList objectAtIndex:row]objectForKey:@"pack_name"];
+    cell.textLabel.textColor = [UIColor blueColor];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:20];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"¥%@",[[self.packList objectAtIndex:row]objectForKey:@"pack_price"]];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+
     
 
     
@@ -83,8 +88,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *packName =[[self.packList objectAtIndex:indexPath.row]objectForKey:@"name"];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"packRset" object:packName userInfo:nil];
+    NSString *packName =[[self.packList objectAtIndex:indexPath.row]objectForKey:@"pack_name"];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"pack_choose" object:packName userInfo:nil];
     [self. navigationController popViewControllerAnimated:YES];
 }
 

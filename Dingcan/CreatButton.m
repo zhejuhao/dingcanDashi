@@ -17,11 +17,13 @@
     [button setTitle:title forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:20];
     button.backgroundColor = [UIColor whiteColor];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button.layer setCornerRadius:10.0];
     [button.layer setBorderWidth:0.5];
     [button.layer setBorderColor:[UIColor grayColor].CGColor];
     [button addTarget:target action:buttonPressed forControlEvents:UIControlEventTouchUpInside];
-
+    UIViewController *view_controller = (UIViewController *)target;
+    [view_controller.view addSubview:button];
     return button;
 }
 

@@ -8,7 +8,8 @@
 
 #import "PersonViewController.h"
 #import "HelpViewController.h"
-
+#import "LookTableViewController.h"
+#import "NavigationItem.h"
 @interface PersonViewController ()
 
 @end
@@ -19,38 +20,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    UIButton *zhaoDa = [self create_button_with_title:@"赵大" :CGRectMake(35, 100, 300,50)];
     
-    [self.view addSubview:zhaoDa];
+    UILabel *label_choose_person = [NavigationItem creat_item_label:@"选人" :CGRectMake(0,0,200,50)];
+    self.navigationItem.titleView = label_choose_person;
     
-    
-    
-    
-    UIButton *qianEr = [self create_button_with_title:@"钱二" :CGRectMake(35, 150, 300,50)];
-    
-    [self.view addSubview:qianEr];
-    
-    
-    UIButton *zhangSan = [self create_button_with_title:@"张三" :CGRectMake(35, 200, 300,50)];
-    
-    [self.view addSubview:zhangSan];
-    
-    
-    UIButton *liSi = [self create_button_with_title:@"李四" :CGRectMake(35, 250, 300,50)];
-    
-    [self.view addSubview:liSi];
-    
-    
-    UIButton *wangWu = [self create_button_with_title:@"王五" :CGRectMake(35, 300, 300,50)];
-    
-    [self.view addSubview:wangWu];
-    
-    
-    UIButton *zhaoLiu = [self create_button_with_title:@"赵六" :CGRectMake(35, 350, 300,50)];
-    
-    [self.view addSubview:zhaoLiu];
-    
-    
+    [self create_button_with_title:@"赵大" :CGRectMake(35, 100, 300,50)];
+    [self create_button_with_title:@"钱二" :CGRectMake(35, 150, 300,50)];
+    [self create_button_with_title:@"张三" :CGRectMake(35, 200, 300,50)];
+    [self create_button_with_title:@"李四" :CGRectMake(35, 250, 300,50)];
+    [self create_button_with_title:@"王五" :CGRectMake(35, 300, 300,50)];
+    [self create_button_with_title:@"赵六" :CGRectMake(35, 350, 300,50)];
 
 }
 
@@ -59,7 +38,7 @@
 {
     UIButton *button = (UIButton *)sender;
     [self.navigationController popViewControllerAnimated:YES];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"persRset" object:button.titleLabel.text userInfo:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"person_choose" object:button.titleLabel.text userInfo:nil];
 }
 
 
@@ -72,7 +51,9 @@
     [button addTarget:self action:@selector(btnPressedPersonName:) forControlEvents:UIControlEventTouchUpInside];
     button.layer.cornerRadius = 10.0;
     button.layer.borderColor = [UIColor grayColor].CGColor;
-    button.layer.borderWidth = 1.0;
+    button.layer.borderWidth = 0.5;
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    [self.view addSubview:button];
     return button;
 
     

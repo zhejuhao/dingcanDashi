@@ -10,10 +10,10 @@
 
 @interface HelpViewController : UIViewController
 {
-    NSDictionary *dic_rest_package;
+    NSDictionary *m_dic_rest_package;
     
-    UIButton *btnConfirm ;
-    UIButton *btnPackage ;
+    UIButton *m_btnConfirm ;
+    UIButton *m_btnPackage ;
 }
 @property(nonatomic,retain)UILabel *restName;
 @property(nonatomic,retain)UILabel *packName;

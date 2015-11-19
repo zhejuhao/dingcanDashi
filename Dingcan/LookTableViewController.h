@@ -11,14 +11,15 @@
 
 @interface LookTableViewController : UITableViewController
 {
-    int personNumber;
-    int number_not_order;
-    NSMutableArray *arr_person_name;
-    double total;
+    int m_personNumber;
+    int m_number_not_order;
+    NSMutableArray *m_arr_person_name;
+    double m_total;
 }
 
 @property(nonatomic,retain)UITableViewController *lookTableView;
 
 @property(nonatomic,retain)NSMutableArray *already_Oder;
+
 
 @end

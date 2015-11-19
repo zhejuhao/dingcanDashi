@@ -10,6 +10,7 @@
 #import "HelpViewController.h"
 #import "LookTableViewController.h"
 #import "CreatButton.h"
+#import "NavigationItem.h"
 
 @interface ViewController ()
 
@@ -21,20 +22,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIButton *btn_help = [CreatButton creatButtonWithTitle:@"帮订餐" :CGRectMake(35, 70, 300, 50):@selector(btnPressed1:) :self];
-    [self.view addSubview:btn_help];
-    
+    [CreatButton creatButtonWithTitle:@"帮订餐" :CGRectMake(35, 70, 300, 50):@selector(btnPressed1:) :self];
 
+     [CreatButton creatButtonWithTitle:@"看订单" :CGRectMake(35, 120,300, 50):@selector(btnPressed2:):self];
 
-    UIButton *btn_look = [CreatButton creatButtonWithTitle:@"看订单" :CGRectMake(35, 120,300, 50):@selector(btnPressed2:):self];
-    
-    [self.view addSubview:btn_look];
-
-    
-    
-  
-    
-
+    UILabel *label_dingCan = [NavigationItem creat_item_label:@"订餐" :CGRectMake(0,0,200,50)];
+    [self.navigationController.navigationBar setFrame:CGRectMake(0, 40, 320, 50)];
+    self.navigationItem.titleView = label_dingCan;
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 
 }
 
@@ -51,7 +46,7 @@
 }
 -(void)btnPressed2:(id)sender
 {
-    LookTableViewController *lookView = [[LookTableViewController alloc]init];
+    LookTableViewController *lookView = [[LookTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:lookView animated:YES];
 
 }
