@@ -24,13 +24,19 @@
     UILabel *label_choose_person = [NavigationItem creat_item_label:@"选人" :CGRectMake(0,0,200,50)];
     self.navigationItem.titleView = label_choose_person;
     
-    [self create_button_with_title:@"赵大" :CGRectMake(35, 100, 300,50)];
-    [self create_button_with_title:@"钱二" :CGRectMake(35, 150, 300,50)];
-    [self create_button_with_title:@"张三" :CGRectMake(35, 200, 300,50)];
-    [self create_button_with_title:@"李四" :CGRectMake(35, 250, 300,50)];
-    [self create_button_with_title:@"王五" :CGRectMake(35, 300, 300,50)];
-    [self create_button_with_title:@"赵六" :CGRectMake(35, 350, 300,50)];
+//    [self create_button_with_title:@"赵大" :CGRectMake(35, 100, 300,50)];
+//    [self create_button_with_title:@"钱二" :CGRectMake(35, 150, 300,50)];
+//    [self create_button_with_title:@"张三" :CGRectMake(35, 200, 300,50)];
+//    [self create_button_with_title:@"李四" :CGRectMake(35, 250, 300,50)];
+//    [self create_button_with_title:@"王五" :CGRectMake(35, 300, 300,50)];
+//    [self create_button_with_title:@"赵六" :CGRectMake(35, 350, 300,50)];
 
+    [self creat_label_with_name:@"赵大" :CGRectMake(35, 100, 300,50)];
+    [self creat_label_with_name:@"钱二" :CGRectMake(35, 150, 300,50)];
+    [self creat_label_with_name:@"张三" :CGRectMake(35, 200, 300,50)];
+    [self creat_label_with_name:@"李四" :CGRectMake(35, 250, 300,50)];
+    [self creat_label_with_name:@"王五" :CGRectMake(35, 300, 300,50)];
+    [self creat_label_with_name:@"赵六" :CGRectMake(35, 350, 300,50)];
 }
 
 
@@ -42,24 +48,32 @@
 }
 
 
-
-- (UIButton *)create_button_with_title : (NSString *)title :(CGRect)frame
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button setFrame:frame];
-    [button setTitle:title forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(btnPressedPersonName:) forControlEvents:UIControlEventTouchUpInside];
-    button.layer.cornerRadius = 10.0;
-    button.layer.borderColor = [UIColor grayColor].CGColor;
-    button.layer.borderWidth = 0.5;
-    button.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-    [self.view addSubview:button];
-    return button;
+//
+//- (UIButton *)create_button_with_title : (NSString *)title :(CGRect)frame
+//{
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [button setFrame:frame];
+//    [button setTitle:title forState:UIControlStateNormal];
+//    [button addTarget:self action:@selector(btnPressedPersonName:) forControlEvents:UIControlEventTouchUpInside];
+//    button.layer.cornerRadius = 10.0;
+//    button.layer.borderColor = [UIColor grayColor].CGColor;
+//    button.layer.borderWidth = 0.5;
+//    button.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+//    [self.view addSubview:button];
+//    return button;
 
     
+//}
+
+-(UILabel *)creat_label_with_name :(NSString *)title :(CGRect)frame
+{
+    UILabel *name_label = [[UILabel alloc]initWithFrame:frame];
+    name_label.text = title;
+    name_label.font = [UIFont boldSystemFontOfSize:20];
+    name_label.textColor = [UIColor blueColor];
+    [self.view addSubview:name_label];
+    return name_label;
 }
-
-
 
 
 

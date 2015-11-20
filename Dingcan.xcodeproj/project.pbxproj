@@ -11,6 +11,7 @@
 		4E4EE35A1BF496A600CB6167 /* DingDanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4EE3591BF496A600CB6167 /* DingDanTableViewCell.m */; };
 		4E4EE35D1BFC224600CB6167 /* CreatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4EE35C1BFC224600CB6167 /* CreatButton.m */; };
 		4E4EE3921BFD987500CB6167 /* NavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4EE3911BFD987500CB6167 /* NavigationItem.m */; };
+		4EC2DABA1BFDCD49009FA0DA /* PersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC2DAB91BFDCD49009FA0DA /* PersonTableViewController.m */; };
 		4EEED5D51BF036E10012066B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED5D41BF036E10012066B /* main.m */; };
 		4EEED5D81BF036E10012066B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED5D71BF036E10012066B /* AppDelegate.m */; };
 		4EEED5DB1BF036E10012066B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EEED5DA1BF036E10012066B /* ViewController.m */; };
@@ -43,6 +44,8 @@
 		4E4EE35C1BFC224600CB6167 /* CreatButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatButton.m; sourceTree = "<group>"; };
 		4E4EE3901BFD987500CB6167 /* NavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationItem.h; sourceTree = "<group>"; };
 		4E4EE3911BFD987500CB6167 /* NavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationItem.m; sourceTree = "<group>"; };
+		4EC2DAB81BFDCD49009FA0DA /* PersonTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTableViewController.h; sourceTree = "<group>"; };
+		4EC2DAB91BFDCD49009FA0DA /* PersonTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewController.m; sourceTree = "<group>"; };
 		4EEED5CF1BF036E10012066B /* Dingcan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dingcan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EEED5D31BF036E10012066B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EEED5D41BF036E10012066B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				4EEED5D21BF036E10012066B /* Supporting Files */,
 				4EEED6041BF0708F0012066B /* HelpViewController.h */,
 				4EEED6051BF0708F0012066B /* HelpViewController.m */,
+				4EC2DAB81BFDCD49009FA0DA /* PersonTableViewController.h */,
+				4EC2DAB91BFDCD49009FA0DA /* PersonTableViewController.m */,
 				4EEED60A1BF0717B0012066B /* PersonViewController.h */,
 				4EEED60B1BF0717B0012066B /* PersonViewController.m */,
 				4EEED60D1BF09E470012066B /* RestaurantTableViewController.h */,
@@ -263,6 +268,7 @@
 				4E4EE3921BFD987500CB6167 /* NavigationItem.m in Sources */,
 				4EEED6061BF0708F0012066B /* HelpViewController.m in Sources */,
 				4EEED6151BF194F20012066B /* PackTableViewController.m in Sources */,
+				4EC2DABA1BFDCD49009FA0DA /* PersonTableViewController.m in Sources */,
 				4E4EE3571BF437B500CB6167 /* LookTableViewController.m in Sources */,
 				4EEED5D81BF036E10012066B /* AppDelegate.m in Sources */,
 				4E4EE35A1BF496A600CB6167 /* DingDanTableViewCell.m in Sources */,

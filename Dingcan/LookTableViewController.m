@@ -66,8 +66,8 @@
     UILabel *toolbar_label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     toolbar_label.backgroundColor = [UIColor blackColor];
     toolbar_label.textColor = [UIColor whiteColor];
-    toolbar_label.text = [NSString stringWithFormat:@"%d人已定,%d人未定,总计:%.2f元",m_personNumber,m_number_not_order,m_total];
-    toolbar_label.textAlignment = UITextAlignmentCenter;
+    toolbar_label.text = [NSString stringWithFormat:@"%d人已定,%d人未定,总计:%.2f元",m_person_number,m_number_not_order,m_total];
+    toolbar_label.textAlignment =UITextAlignmentCenter;
     toolbar_label.font = [UIFont boldSystemFontOfSize:20];
     [self.view addSubview:toolbar];
     [toolbar addSubview:toolbar_label];
@@ -96,7 +96,7 @@
     [self total_price];
     [self creat_toolbar];
     m_number_not_order = (int)m_arr_person_name.count;//没订餐的人数
-    m_personNumber = 6 - m_number_not_order;//已经订餐的人数
+    m_person_number = 6 - m_number_not_order;//已经订餐的人数
 
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -142,39 +142,35 @@
     }
     return priceColor;
 }
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section   //section的头标题
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section   //section的头标题
 {
-//    UIView *headerView = [[UIView alloc]init];
-//    UILabel *headerTitle =[[UILabel alloc]init];
-//    headerTitle.textColor = [UIColor whiteColor];
-//    headerTitle.backgroundColor = [UIColor blueColor];
+
     
     if (section == 0)
-    {
-//        UILabel *header_label_order =[[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
-//      header_label_order.text=[NSString stringWithFormat:@"%d人已定",m_personNumber];
-//        return header_label_order;
-       return  [NSString stringWithFormat:@"%d人已定",m_personNumber];
-    }
+        return  [self creat_section_header_label:[NSString stringWithFormat:@"%d人已定",m_person_number]];
     else
-    {
-//        UILabel *header_label_not_order =[[UILabel alloc]initWithFrame:CGRectMake(0, 300, self.view.frame.size.width, 40)];
-//        header_label_not_order.text =  [NSString stringWithFormat:@"%d人未定",m_number_not_order];
-//        return header_label_not_order;
-       return  [NSString stringWithFormat:@"%d人未定",m_number_not_order];
-    }
-//    [headerView addSubview:headerTitle];
-//    return headerView;
-
+        return [self creat_section_header_label:[NSString stringWithFormat:@"%d人未定",m_number_not_order]];
+}
+-(UILabel *)creat_section_header_label :(NSString *)title
+{
+    UILabel *header_label = [[UILabel alloc]init];
+    header_label.text = title;
+    header_label.backgroundColor = [UIColor blueColor];
+    header_label.textColor = [UIColor whiteColor];
+    [self.view addSubview:header_label];
+    return header_label;
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0)
         return 44.0;
-    return 45.0;
+    return 44.0;
 }//设置头标题的高度
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.1;
+}
 
 
 

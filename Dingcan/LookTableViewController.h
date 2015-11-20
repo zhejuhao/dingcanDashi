@@ -11,7 +11,7 @@
 
 @interface LookTableViewController : UITableViewController
 {
-    int m_personNumber;
+    int m_person_number;
     int m_number_not_order;
     NSMutableArray *m_arr_person_name;
     double m_total;

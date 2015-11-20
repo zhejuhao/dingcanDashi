@@ -11,6 +11,7 @@
 #import "RestaurantTableViewController.h"
 #import "NavigationItem.h"
 #import "PackTableViewController.h"
+#import "PersonTableViewController.h"
 
 #import "CreatButton.h"
 @interface HelpViewController ()
@@ -136,7 +137,7 @@
 
 -(void)btnPressed_pers:(id)sender
 {
-    PersonViewController *personView = [[PersonViewController alloc]init];
+    PersonTableViewController *personView = [[PersonTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:personView animated:YES];
     
     //点选人按钮的动作是跳转到personView
